@@ -11,6 +11,7 @@ function App() {
   const[isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
   const[isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const[isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
+  const[selectedCard, setSelectedCard] = React.useState(false);
 
   function handleEditAvatarClick() {;
     setEditAvatarPopupOpen(true);
@@ -24,10 +25,15 @@ function App() {
     setAddPlacePopupOpen(true);
   }
 
+  function  handleCardClick(card) {
+    setSelectedCard(card);
+  }
+
   function closeAllPopups() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
+    setSelectedCard(false);
   }
 
   return (
@@ -38,6 +44,7 @@ function App() {
           onEditAvatar={handleEditAvatarClick}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
+          onCardClick={handleCardClick}
         />
         <Footer />
       </div>
@@ -66,7 +73,7 @@ function App() {
           <span className="popup__input-error name-input-error"></span>
         </label>
         <label className="popup__field">
-          <input type="text" name="desc" id="desc-input" className="popup__input" placeholder="О себе" minlength="2" maxlength="200" />
+          <input type="text" name="desc" id="desc-input" className="popup__input" placeholder="О себе" minLength="2" maxLength="200" />
           <span className="popup__input-error desc-input-error"></span>
         </label>
       </PopupWithForm>
@@ -92,24 +99,9 @@ function App() {
         btnTitle="Да"
       />
       <ImagePopup
-        // card={}
-        // isOpen={}
+        card={selectedCard}
         onClose={closeAllPopups}
       />
-
-      {/* <template className="element-template">
-        <li className="element">
-          <img className="element__image" src="#" alt="#" />
-          <div className="element__info">
-            <h3 className="element__title"></h3>
-            <div className="element__like-wrapper">
-              <button type="button" className="element__like-btn"></button>
-              <span className="element__like-counter">0</span>
-            </div>
-          </div>
-          <button className="btn element__del-btn" type="button"></button>
-        </li>
-      </template> */}
     </div>
   );
 }

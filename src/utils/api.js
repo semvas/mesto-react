@@ -98,4 +98,3 @@ export const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-23',
   token: 'cadf30a7-bb91-4b36-8346-85b440530081'
 });
-
