@@ -8,21 +8,21 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup'
 
 function App() {
-  const[isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
-  const[isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
-  const[isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
-  const[selectedCard, setSelectedCard] = React.useState(false);
+  const[isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const[isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const[isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const[selectedCard, setSelectedCard] = React.useState({name: '', link: ''});
 
   function handleEditAvatarClick() {;
-    setEditAvatarPopupOpen(true);
+    setIsEditAvatarPopupOpen(true);
   }
 
   function handleEditProfileClick() {
-    setEditProfilePopupOpen(true);
+    setIsEditProfilePopupOpen(true);
   }
 
   function handleAddPlaceClick() {
-    setAddPlacePopupOpen(true);
+    setIsAddPlacePopupOpen(true);
   }
 
   function  handleCardClick(card) {
@@ -30,10 +30,10 @@ function App() {
   }
 
   function closeAllPopups() {
-    setEditAvatarPopupOpen(false);
-    setEditProfilePopupOpen(false);
-    setAddPlacePopupOpen(false);
-    setSelectedCard(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setSelectedCard({name: '', link: ''});
   }
 
   return (
@@ -107,3 +107,6 @@ function App() {
 }
 
 export default App;
+
+
+// Здравствуйте, Геннадий! Спасибо!
