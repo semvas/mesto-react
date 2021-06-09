@@ -1,45 +1,33 @@
 import React from 'react';
+
 import { api } from '../utils/api';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+
 import Card from './Card';
 
 function Main(props) {
-  const[userName, setUserName] = React.useState('');
-  const[userDescription, setUserDescription] = React.useState('');
-  const[userAvatar, setUserAvatar] = React.useState('');
+  const currentUser = React.useContext(CurrentUserContext);
 
-  const[cards, setCards] = React.useState([]);
+  function handleCardLike(card) {
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
 
-  React.useEffect(() =>{
-    Promise.all([
-      api.getUserInfo(),
-      api.getInitialCards()
-    ])
-    .then((res) => {
-      const [ userData, initialCards ] = res;
-
-      setUserName(userData.name);
-      setUserDescription(userData.about);
-      setUserAvatar(userData.avatar);
-
-      setCards(initialCards);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }, []);
+    api.toggleLike(card._id, isLiked).then(newCard => {
+      setCards(state => state.map(c => c._id === card._id ? newCard : c));
+    });
+  }
 
   return (
     <main className="content">
       <section className="profile">
         <div className="profile__image-wrapper" onClick={props.onEditAvatar}>
-          <img className="profile__image" src={userAvatar} alt="Аватарка" />
+          <img className="profile__image" src={currentUser.avatar} alt="Аватарка" />
         </div>
         <div className="profile__info">
           <div className="profile__title">
-            <h1 className="profile__name">{userName}</h1>
+            <h1 className="profile__name">{currentUser.name}</h1>
             <button type="button" className="btn profile__edit-btn" onClick={props.onEditProfile} />
           </div>
-          <p className="profile__desc">{userDescription}</p>
+          <p className="profile__desc">{currentUser.about}</p>
         </div>
         <button type="button" className="btn profile__add-btn" onClick={props.onAddPlace} />
       </section>

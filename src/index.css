@@ -38,6 +38,7 @@
 @import url(./blocks/element/__like-counter/element__like-counter.css);
 @import url(./blocks/element/__title/element__title.css);
 @import url(./blocks/element/__del-btn/element__del-btn.css);
+@import url(./blocks/element/__del-btn/_hidden/element__del-btn_hidden.css);
 
 
 @import url(./blocks/footer/footer.css);
