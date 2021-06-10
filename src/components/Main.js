@@ -1,20 +1,11 @@
 import React from 'react';
 
-import { api } from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 import Card from './Card';
 
 function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
-
-  function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-
-    api.toggleLike(card._id, isLiked).then(newCard => {
-      setCards(state => state.map(c => c._id === card._id ? newCard : c));
-    });
-  }
 
   return (
     <main className="content">
@@ -33,11 +24,13 @@ function Main(props) {
       </section>
       <section className="photo-cards">
         <ul className="elements">
-          {cards.map(card => (
+          {props.cards.map(card => (
             <Card
               card={card}
               key={card._id}
               onCardClick={props.onCardClick}
+              onCardLike={props.onCardLike}
+              onCardDelete={props.onCardDelete}
             />
           ))}
         </ul>

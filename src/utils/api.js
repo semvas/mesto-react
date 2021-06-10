@@ -29,7 +29,7 @@ export default class Api {
       },
       body: JSON.stringify({
         name: data.name,
-        about: data.desc
+        about: data.about
       })
     })
     .then(this._handleResponse)
