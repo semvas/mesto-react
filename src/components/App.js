@@ -65,14 +65,22 @@ function App() {
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
-    api.toggleLike(card._id, isLiked).then(newCard => {
+    api.toggleLike(card._id, isLiked)
+    .then(newCard => {
       setCards(state => state.map(c => c._id === card._id ? newCard : c));
+    })
+    .catch(err => {
+      console.log(err);
     });
   }
 
   function handleCardDelete(card) {
-    api.deleteCard(card._id).then(() => {
+    api.deleteCard(card._id)
+    .then(() => {
       setCards(state => state.filter(c => c._id !== card._id));
+    })
+    .catch(err => {
+      console.log(err);
     });
   }
 
@@ -148,3 +156,6 @@ function App() {
 }
 
 export default App;
+
+
+// Здравствуйте, Батырбек! Спасибо!

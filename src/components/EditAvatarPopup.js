@@ -13,6 +13,10 @@ function EditAvatarPopup(props) {
     });
   }
 
+  React.useEffect(() => {
+    avatar.current.value = '';
+  }, [props.isOpen]);
+
   return (
     <PopupWithForm
       name="change-ava"
